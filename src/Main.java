@@ -16,14 +16,14 @@ public class Main {
         int[] bestWeightMetric = {0, 0, 0, 0};
         double bestAccuracy = 0;
 
+        game[] games = data.getGames();
+        for (game gm : games) {
+            gm.init();
+        }
+
         for (int[] combinationMetric : combinationsMetric) {
             for (int[] ints : combinationsEquation) {
                 int numberOfNotDraw = 0;
-
-                game[] games = data.getGames();
-                for (game gm : games) {
-                    gm.init();
-                }
                 int correctGuesses = 0;
 
                 for (game gm : games) {
@@ -63,9 +63,9 @@ public class Main {
     }
 
     private static double getSum(double[] metricsGM, int[] weightsMetric, int[] weightsEquation) {
-        double xGDifferenceLow = metricsGM[3] - metricsGM[4];
-        double xGDifferenceMedium = metricsGM[5] - metricsGM[6];
-        double xGDifferenceHigh = metricsGM[7] - metricsGM[8];
+        double xGDifferenceLow = metricsGM[3] - metricsGM[6];
+        double xGDifferenceMedium = metricsGM[4] - metricsGM[7];
+        double xGDifferenceHigh = metricsGM[5] - metricsGM[8];
 
         double xGSum = xGDifferenceLow + xGDifferenceMedium + xGDifferenceHigh;
         double totalGoalDifference = metricsGM[9] - metricsGM[10];

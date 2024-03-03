@@ -52,8 +52,7 @@ public class Main {
                     bestAccuracy = (double) correctGuesses / numberOfNotDraw;
                 }
             }
-            System.out.println(Arrays.toString(bestWeightEquation));
-            System.out.println(Arrays.toString(bestWeightMetric));
+            System.out.println(Arrays.toString(combinationMetric));
             System.out.println(bestAccuracy);
         }
         System.out.println(Arrays.toString(bestWeightEquation));
@@ -76,6 +75,10 @@ public class Main {
         winRateHome *= weightsMetric[2];
         winRateHomeSpecific *= weightsMetric[3];
 
-        return (1 / ((-weightsEquation[0] * xGSum) - 1)) + (1 / ((-weightsEquation[0] * totalGoalDifference) - 1)) + (1 / ((-weightsEquation[0] * winRateHome) - 1)) + (1 / ((-weightsEquation[0] * winRateHomeSpecific) - 1)) + 4;
+        return (1 / ((-((double) 1/weightsEquation[0]) * xGSum) - 1)) +
+                (1 / ((-((double) 1/weightsEquation[0]) * totalGoalDifference) - 1)) +
+                (1 / ((-((double) 1/weightsEquation[0]) * winRateHome) - 1)) +
+                (1 / ((-((double) 1/weightsEquation[0]) * winRateHomeSpecific) - 1)) +
+                4;
     }
 }

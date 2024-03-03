@@ -52,10 +52,6 @@ public class Main {
                     bestAccuracy = (double) correctGuesses / numberOfNotDraw;
                 }
             }
-            System.out.println(Arrays.toString(bestWeightEquation));
-            System.out.println(Arrays.toString(combinationMetric));
-            System.out.println(bestAccuracy);
-
         }
         System.out.println(Arrays.toString(bestWeightEquation));
         System.out.println(Arrays.toString(bestWeightMetric));

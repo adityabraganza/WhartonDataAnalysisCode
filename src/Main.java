@@ -77,17 +77,17 @@ public class Main {
 
         if (totalGoalDifference > 0){
             totalGoalDifference *= weightsMetric[1];
-            totalGoalDifference = (1 / ((-((double) 1/weightsEquation[0]) * totalGoalDifference) - weightsEquation[4])) + 1;
+            totalGoalDifference = (1 / ((-((double) 1/weightsEquation[1]) * totalGoalDifference) - weightsEquation[4])) + 1;
         }
 
         if (winRateHome > 0){
             winRateHome *= weightsMetric[2];
-            winRateHome = (1 / ((-((double) 1/weightsEquation[0]) * winRateHome) - weightsEquation[4])) + 1;
+            winRateHome = (1 / ((-((double) 1/weightsEquation[2]) * winRateHome) - weightsEquation[4])) + 1;
         }
 
         if (winRateHomeSpecific > 0){
             winRateHomeSpecific *= weightsMetric[3];
-            winRateHomeSpecific = (1 / ((-((double) 1/weightsEquation[0]) * winRateHomeSpecific) - weightsEquation[4])) + 1;
+            winRateHomeSpecific = (1 / ((-((double) 1/weightsEquation[3]) * winRateHomeSpecific) - weightsEquation[4])) + 1;
         }
 
         return xGSum + totalGoalDifference + winRateHome + winRateHomeSpecific;

@@ -10,9 +10,9 @@ import NativeFunctions.optimization;
 public class Main {
     public static void main(String[] args) {
         List<int[]> combinationsMetric = optimization.getWeight(new int[]{0, 0, 0, 0}, 0, 3);
-        List<int[]> combinationsEquation = optimization.getWeight(new int[]{0, 0, 0, 0}, 0, 3);
+        List<int[]> combinationsEquation = optimization.getWeight(new int[]{0, 0, 0, 0, 0}, 0, 3);
 
-        int[] bestWeightEquation = {0, 0, 0, 0};
+        int[] bestWeightEquation = {0, 0, 0, 0, 0};
         int[] bestWeightMetric = {0, 0, 0, 0};
         double bestAccuracy = 0;
 
@@ -70,15 +70,26 @@ public class Main {
         double winRateHome = metricsGM[0] - metricsGM[1];
         double winRateHomeSpecific = metricsGM[2];
 
-        xGSum *= weightsMetric[0];
-        totalGoalDifference *= weightsMetric[1];
-        winRateHome *= weightsMetric[2];
-        winRateHomeSpecific *= weightsMetric[3];
+        if (xGSum > 0) {
+            xGSum *= weightsMetric[0];
+            xGSum = (1 / ((-((double) 1/weightsEquation[0]) * xGSum) - weightsEquation[4])) + 1;
+        }
 
-        return (1 / ((-((double) 1/weightsEquation[0]) * xGSum) - 1)) +
-                (1 / ((-((double) 1/weightsEquation[0]) * totalGoalDifference) - 1)) +
-                (1 / ((-((double) 1/weightsEquation[0]) * winRateHome) - 1)) +
-                (1 / ((-((double) 1/weightsEquation[0]) * winRateHomeSpecific) - 1)) +
-                4;
+        if (totalGoalDifference > 0){
+            totalGoalDifference *= weightsMetric[1];
+            totalGoalDifference = (1 / ((-((double) 1/weightsEquation[0]) * totalGoalDifference) - weightsEquation[4])) + 1;
+        }
+
+        if (winRateHome > 0){
+            winRateHome *= weightsMetric[2];
+            winRateHome = (1 / ((-((double) 1/weightsEquation[0]) * winRateHome) - weightsEquation[4])) + 1;
+        }
+
+        if (winRateHomeSpecific > 0){
+            winRateHomeSpecific *= weightsMetric[3];
+            winRateHomeSpecific = (1 / ((-((double) 1/weightsEquation[0]) * winRateHomeSpecific) - weightsEquation[4])) + 1;
+        }
+
+        return xGSum + totalGoalDifference + winRateHome + winRateHomeSpecific;
     }
 }

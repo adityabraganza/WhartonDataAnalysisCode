@@ -2,6 +2,7 @@ import NativeFunctions.data;
 import NativeFunctions.metrics;
 import Objects.game;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -9,8 +10,8 @@ import NativeFunctions.optimization;
 
 public class Main {
     public static void main(String[] args) {
-        List<int[]> combinationsMetric = optimization.getWeight(new int[]{0, 0, 0, 0}, 0, 3);
-        List<int[]> combinationsEquation = optimization.getWeight(new int[]{0, 0, 0, 0, 0}, 0, 3);
+        List<int[]> combinationsMetric = optimization.getWeight(new int[]{0, 0, 0, 0}, 5);
+        List<int[]> combinationsEquation = optimization.getWeight(new int[]{0, 0, 0, 0, 0}, 5);
 
         int[] bestWeightEquation = {0, 0, 0, 0, 0};
         int[] bestWeightMetric = {0, 0, 0, 0};
